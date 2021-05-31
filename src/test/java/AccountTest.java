@@ -21,7 +21,9 @@ public class AccountTest extends BaseTest{
         driver.findElement(By.id("Login")).click();
         newAccountModalPage.openPage();
         newAccountModalPage.create("FirstAccount", "www.tut.by", "Customer",
-                                    "Engineering" ,"1-234-56789");
+                                    "Engineering" ,"1-234-56789", "25", "1000",
+                                    "No description", "Ozornaya", "Zhabinka", "Brest",
+                                    "123456", "BY");
     }
 
 }
