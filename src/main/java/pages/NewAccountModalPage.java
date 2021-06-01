@@ -4,13 +4,20 @@ import elements.Button;
 import elements.DropDown;
 import elements.Input;
 import elements.TextArea;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+
+import java.security.SecureRandom;
 
 public class NewAccountModalPage extends BasePage{
     public NewAccountModalPage(WebDriver driver) {
         super(driver);
     }
     private static final  String URL = "https://oaojzs.lightning.force.com/lightning/o/Account/new";
+    private static final String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    private static final String DUPLICATION_ALERT = "//div[contains(text(),'like a duplicate')]";
+
+    private static SecureRandom rnd = new SecureRandom();
 
     public void openPage() {
         driver.get(URL);
@@ -35,7 +42,17 @@ public class NewAccountModalPage extends BasePage{
         new Input(driver, "Billing Zip/Postal Code").writeText(billingZipPostalCode);
         new Input(driver, "Billing Country").writeText(billingCountry);
         new Button(driver, "Save").clickButton();
+        if (driver.findElement(By.xpath(DUPLICATION_ALERT)).isEnabled()) {
+            new Button(driver, "Save").clickButton();
+        }
 
+    }
+
+    public String randomString( int len ){
+        StringBuilder sb = new StringBuilder( len );
+        for( int i = 0; i < len; i++ )
+            sb.append( AB.charAt( rnd.nextInt(AB.length()) ) );
+        return sb.toString();
     }
 
 }
