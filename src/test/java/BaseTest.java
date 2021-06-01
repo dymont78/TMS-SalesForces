@@ -22,7 +22,7 @@ public class BaseTest {
 
     @AfterMethod
     public void endTest() {
-  //      driver.quit();
+        driver.quit();
     }
 
     public void initPages() {

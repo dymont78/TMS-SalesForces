@@ -28,6 +28,10 @@ public class AccountTest extends BaseTest{
                                     "Ozornaya", "Zhabinka", "Brest", "123456", "BY");
         Assert.assertEquals(driver.findElement(By.xpath(String.format(ASSERT_XPATH, "Account Name"))).getText(), accountName);
         Assert.assertEquals(driver.findElement(By.xpath(String.format(ASSERT_XPATH, "Website"))).getText(), "www.tut.by");
+        Assert.assertEquals(driver.findElement(By.xpath(String.format(ASSERT_XPATH, "Phone"))).getText(), "1-234-56789");
+        Assert.assertEquals(driver.findElement(By.xpath(String.format(ASSERT_XPATH, "Employees"))).getText(), "25");
+        Assert.assertEquals(driver.findElement(By.xpath(String.format(ASSERT_XPATH, "Annual Revenue"))).getText(), "10000");
+
     }
 
 }
