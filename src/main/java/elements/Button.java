@@ -13,8 +13,8 @@ public class Button {
         this.driver = driver;
         this.label = label;
     }
+
     public void clickButton(){
         driver.findElement(By.xpath(String.format(BUTTON_XPATH, label))).click();
     }
-
 }

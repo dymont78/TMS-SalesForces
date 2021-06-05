@@ -20,8 +20,4 @@ public class DropDown {
         driver.findElement(By.xpath(String.format(DROPDOWN_XPATH, label))).click();
         driver.findElement(By.xpath(String.format(SELECT_OPTION_XPATH,option))).click();
     }
-
-
 }
-
-
