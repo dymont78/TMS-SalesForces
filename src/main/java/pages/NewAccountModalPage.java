@@ -7,6 +7,7 @@ import elements.TextArea;
 import objects.Account;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class NewAccountModalPage extends BasePage{
     public NewAccountModalPage(WebDriver driver) {
@@ -14,9 +15,11 @@ public class NewAccountModalPage extends BasePage{
     }
 
     private static final String DUPLICATION_ALERT = "//div[contains(text(),'like a duplicate')]";
+    public static final String ASSERT_XPATH = "//span[text() = '%s']/ancestor::div[contains(@class, 'slds-form-element')]//*[contains(@slot, 'outputField')]";
 
-    public void openPage() {
+    public NewAccountModalPage openPage() {
         driver.get(BASE_URL + "/lightning/o/Account/new");
+        return this;
     }
 
     public void create(Account account){
@@ -38,5 +41,15 @@ public class NewAccountModalPage extends BasePage{
         if (driver.findElement(By.xpath(DUPLICATION_ALERT)).isEnabled()) {
             new Button(driver, "Save").clickButton();
         }
+    }
+    public WebElement findByXpath(String textLabel) {
+        return driver.findElement(By.xpath(String.format(ASSERT_XPATH, textLabel)));
+    }
+    public NewAccountModalPage getAndLoginSite(String login, String password) {
+        driver.get(URL);
+        driver.findElement(By.id("username")).sendKeys(login);
+        driver.findElement(By.id("password")).sendKeys(password);
+        driver.findElement(By.id("Login")).click();
+        return this;
     }
 }
